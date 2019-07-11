@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import AppLayout from '../components/AppLayout';
 
-const Home = () => {
+const Profile = () => {
     return (
         <>
             <Head>
@@ -11,10 +11,10 @@ const Home = () => {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.16.2/antd.css" />
             </Head>
             <AppLayout>
-                <div>hello next!</div>
+                프로필
             </AppLayout>
         </>
     )
 }
 
-export default Home;
+export default Profile;
