@@ -10,10 +10,19 @@ const Signup = () => {
     const [nick, setNick] = useState('');
     const [password, setPassword] = useState('');
     const [passwordCheck, setPasswordCheck] = useState('');
-    const [term, setTerm] = useState('');
+    const [term, setTerm] = useState(false);
 
 
-    const onSubmit = () => { }
+    const onSubmit = (e) => {
+        e.preventDefault();
+        console.log({
+            id,
+            nick,
+            password,
+            passwordCheck,
+            term,
+        })
+    }
 
     const onChangeId = (e) => {
         setId(getValue(e));
@@ -32,12 +41,17 @@ const Signup = () => {
     }
 
     const onChangeTerm = (e) => {
-        setTerm(getValue(e));
+        setTerm(getCheck(e));
     }
 
     const getValue = (e) => {
         const { value } = e.target;
         return value;
+    }
+
+    const getCheck = (e) => {
+        const { checked } = e.target;
+        return checked;
     }
 
     return (
