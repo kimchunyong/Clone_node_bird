@@ -11,10 +11,21 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [passwordCheck, setPasswordCheck] = useState('');
     const [term, setTerm] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+    const [termError, setTermError] = useState(false);
 
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        if (password !== passwordCheck) {
+            return setPasswordError(true);
+        }
+
+        if (!term) {
+            return setTermError(true);
+        }
+
         console.log({
             id,
             nick,
@@ -37,10 +48,12 @@ const Signup = () => {
     }
 
     const onChangePasswordChk = (e) => {
+        setPasswordError(getValue(e) !== password);
         setPasswordCheck(getValue(e));
     }
 
     const onChangeTerm = (e) => {
+        setTermError(false);
         setTerm(getCheck(e));
     }
 
@@ -84,11 +97,13 @@ const Signup = () => {
                         <label htmlFor="user-password-check">비밀번호확인</label>
                         <br />
                         <Input name="user-password-check" value={passwordCheck} type="password" required onChange={onChangePasswordChk} />
+                        {passwordError && <div style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</div>}
                     </div>
                     <div>
                         <Checkbox name="user-term" value={term} onChange={onChangeTerm}>약관에 동의합니다.</Checkbox>
+                        {termError && <div style={{ color: 'red' }}>약관에 동의 해주세요.</div>}
                     </div>
-                    <div>
+                    <div style={{ marginTop: '10px' }}>
                         <Button type="primary" htmlType="submit">가입하기</Button>
                     </div>
                 </Form>
