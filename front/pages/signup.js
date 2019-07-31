@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Head from 'next/head';
-
 import AppLayout from '../components/AppLayout';
-
 import { Form, Input, Button, Checkbox } from 'antd';
 
 const Signup = () => {
@@ -14,6 +12,13 @@ const Signup = () => {
     const [passwordError, setPasswordError] = useState(false);
     const [termError, setTermError] = useState(false);
 
+    const useInput = (initValue = null) => {
+        const [value, setter] = useState(initValue);
+        const handler = (e) => {
+            setter(e.target.value);
+        }
+        return [value, handler];
+    }
 
     const onSubmit = (e) => {
         e.preventDefault();
